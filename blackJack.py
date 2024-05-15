@@ -44,19 +44,19 @@ class preparo:
         self.cartaMaquina.append(self.carta)
 
     def msg(self):
-        print(f'Cartas do jogador: {self.cartaJogador} a soma das cartas é: {sum(self.cartaJogador)}')
-        print(f'Cartas da maquina: {self.cartaMaquina}a soma das cartas é: {sum(self.cartaMaquina)}') 
+        print(f'Jogador: {self.cartaJogador} soma = {sum(self.cartaJogador)}, Máquina: {self.cartaMaquina} soma = {sum(self.cartaMaquina)} ')
 
 
     def comparador(self):
         if sum(self.cartaJogador)>sum(self.cartaMaquina) and sum(self.cartaJogador)<21:
             print('!!! Parabéns, vc ganhou !!!')
 
-        elif sum(self.cartaMaquina)>sum(self.cartaJogador) and sum(self.cartaJogador)<21:
+        elif sum(self.cartaMaquina)>sum(self.cartaJogador) and sum(self.cartaMaquina)<21:
+            
             print('!!! Desculpe, vc perdeu !!!')
 
         elif sum(self.cartaJogador) == sum(self.cartaMaquina):
-            print(f'Jogador: {self.cartaJogador}, Máquina: {self.cartaMaquina}')
+            
             print(' EMPATOU ')                  
         
 
@@ -78,15 +78,16 @@ class jogando(preparo):
             self.pergunta=input(' H - hit   S- stand: ')
             if self.pergunta in 'Hh':
                 self.adicionaJogador()
-                self.msg()
+                print(f'Cartas do jogador: {self.cartaJogador} a soma das cartas é: {sum(self.cartaJogador)}')
+                print(f'Cartas da maquina: [{self.cartaMaquina[0]}, oculta]')
                 self.calculo(self.jogador,self.cartaJogador)
 
             elif self.pergunta in 'Ss':
                 while sum(self.cartaMaquina)<17:
                     self.adicionaMaquina()
-                    self.msg()
                     self.calculo(self.maquina,self.cartaMaquina)
                 
+                self.msg()
                 self.comparador()
                 self.estado=False 
                        
